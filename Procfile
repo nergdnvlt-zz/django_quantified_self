@@ -1,1 +1,1 @@
-web: gunicorn heroku_blog.wsgi --log-file -
+web: gunicorn django_quantified_self.wsgi --log-file -
