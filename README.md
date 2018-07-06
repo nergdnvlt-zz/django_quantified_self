@@ -4,10 +4,10 @@
 
 ### See The Active Site:
 Front End Production Site:<br>
-[Quantified Self]() <br>
+[Quantified Self](https://nergdnvlt.github.io/django_qs_fe/) <br>
 
 API Base URL:<br>
-[Quantified Self Express API]()<br>
+[Quantified Self Express API](https://django-quantified-self.herokuapp.com/)<br>
 
 Pitch:
 This app is a basic food/meal/calorie tracking application.
