@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from api.serializers import FoodSerializer, MealSerializer
+from rest_framework import status
 from rest_framework import viewsets
 from api.models import Food, Meal
 from rest_framework.response import Response
@@ -14,40 +15,45 @@ class FoodViews(viewsets.ViewSet):
         return Response(serializer.data)
 
     def retrieve(self, request, food_id=None):
-        foods = Food.objects.all()
-        food = get_object_or_404(foods, id=food_id)
-        serializer = FoodSerializer(food)
+        food = get_object_or_404(Food, id=food_id)
+        serializer = FoodSerializer(food, many=False)
         return Response(serializer.data)
 
     def create(self, request):
-        food_attrs = json.loads(request.body)['food']
-        food = Food(name=food_attrs['name'], calories=food_attrs['calories'])
-        food.save()
-        serializer = FoodSerializer(food)
-        return Response(serializer.data)
+        food_attrs = request.data['food']
+        if 'name' in food_attrs.keys() and 'calories' in food_attrs.keys():
+            food = Food.objects.create(name=food_attrs['name'], calories=food_attrs['calories'])
+            serializer = FoodSerializer(food)
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def update(self, request, food_id=None):
-        foods = Food.objects.all()
-        food = get_object_or_404(foods, id=food_id)
-        food_attrs = json.loads(request.body)['food']
-        food.name = food_attrs['name']
-        food.calories=food_attrs['calories']
-        food.save()
-        serializer = FoodSerializer(food)
-        return Response(serializer.data)
+        food = get_object_or_404(Food, id=food_id)
+        food_attrs = request.data['food']
+        if 'name' in food_attrs.keys() and 'calories' in food_attrs.keys():
+            food.name = food_attrs['name']
+            food.calories=food_attrs['calories']
+            food.save()
+            serializer = FoodSerializer(food)
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def partial_update(self, request, food_id=None):
-        foods = Food.objects.all()
-        food = get_object_or_404(foods, id=food_id)
-        food_attrs = json.loads(request.body)['food']
-        food.name = food_attrs['name']
-        food.calories=food_attrs['calories']
-        food.save()
-        serializer = FoodSerializer(food)
-        return Response(serializer.data)
+        food = get_object_or_404(Food, id=food_id)
+        food_attrs = request.data['food']
+        if 'name' in food_attrs.keys() and 'calories' in food_attrs.keys():
+            food.name = food_attrs['name']
+            food.calories=food_attrs['calories']
+            food.save()
+            serializer = FoodSerializer(food)
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, food_id=None):
         foods = Food.objects.all()
         food = get_object_or_404(foods, id=food_id)
         food.delete()
-        return HttpResponse(status=204)
+        return HttpResponse(status=status.HTTP_204_NO_CONTENT)
