@@ -27,7 +27,7 @@ SECRET_KEY = 'y2ii&j!ie8^gj2al00is*ppa!x=(llm&^laf^(c@u0nho+m)$9'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost'
+    'localhost',
     'django-quantified-self.herokuapp.com',
 ]
 
@@ -82,10 +82,24 @@ WSGI_APPLICATION = 'django_quantified_self.wsgi.application'
 
 
 # Database
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+ON_HEROKU = os.environ.get('ON_HEROKU')
+HEROKU_SERVER = os.environ.get('HEROKU_SERVER')
+if ON_HEROKU:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('DATABASE_URL')
+            )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'django_quantified_self',
+            'USER': 'nergdnvlt',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '',
+     }
 }
 
 

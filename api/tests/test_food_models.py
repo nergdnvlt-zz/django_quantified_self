@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from api.models import Food, Meal
+from api.models import Food
 
 # Create your tests here.
 class FoodModelTestCase(TestCase):
