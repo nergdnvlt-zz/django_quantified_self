@@ -82,25 +82,19 @@ WSGI_APPLICATION = 'django_quantified_self.wsgi.application'
 
 
 # Database
-ON_HEROKU = os.environ.get('ON_HEROKU')
-HEROKU_SERVER = os.environ.get('HEROKU_SERVER')
-if ON_HEROKU:
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=os.environ.get('DATABASE_URL')
-            )
+DATABASES = {
+    'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'quantified_self',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'django_quantified_self',
-            'USER': 'nergdnvlt',
-            'PASSWORD': '',
-            'HOST': '',
-            'PORT': '',
-     }
 }
+
+env = os.environ.copy()
+db_url = env.get('DATABASE_URL', False)
+
+if db_url != False:
+    import dj_database_url
+    DATABASES['default'] =  dj_database_url.config()
 
 
 # Password validation
