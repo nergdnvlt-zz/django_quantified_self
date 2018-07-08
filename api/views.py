@@ -9,6 +9,7 @@ from rest_framework.response import Response
 import json
 
 class FoodViews(viewsets.ViewSet):
+
     def list(self, request):
         foods = Food.objects.all()
         serializer = FoodSerializer(foods, many=True)
@@ -53,7 +54,19 @@ class FoodViews(viewsets.ViewSet):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, food_id=None):
-        foods = Food.objects.all()
-        food = get_object_or_404(foods, id=food_id)
+        food = get_object_or_404(Food, id=food_id)
         food.delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+        
+
+class MealViews(viewsets.ViewSet):
+
+    def list(self, request):
+        meals = Meal.objects.all()
+        serializer = MealSerializer(meals, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, meal_id=None):
+        meal = get_object_or_404(Meal, id=meal_id)
+        serializer = MealSerializer(meal, many=False)
+        return Response(serializer.data)
