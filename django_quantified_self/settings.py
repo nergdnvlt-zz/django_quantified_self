@@ -27,6 +27,7 @@ SECRET_KEY = 'y2ii&j!ie8^gj2al00is*ppa!x=(llm&^laf^(c@u0nho+m)$9'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'localhost'
     'django-quantified-self.herokuapp.com',
 ]
 
