@@ -7,9 +7,9 @@ from api.models import Food
 class FoodsEndpointTest(TestCase):
 
     def setUp(self):
-        self.client=APIClient()
-        self.apple = Food.objects.create(name="apple", calories=100)
-        self.ramen = Food.objects.create(name="delicious ramen", calories=888)
+        self.client = APIClient()
+        self.apple  = Food.objects.create(name="apple", calories=100)
+        self.ramen  = Food.objects.create(name="delicious ramen", calories=888)
         self.banana = Food.objects.create(name="banana", calories=100)
 
 

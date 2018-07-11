@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, JsonResponse
+from api.models import Food, Meal
 from api.serializers import FoodSerializer, MealSerializer
 from rest_framework import status
 from rest_framework import viewsets
-from api.models import Food, Meal
 from rest_framework.response import Response
 import json
+
+
+from IPython import embed
 
 class FoodViews(viewsets.ViewSet):
 
@@ -57,7 +60,7 @@ class FoodViews(viewsets.ViewSet):
         food = get_object_or_404(Food, id=food_id)
         food.delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
-        
+
 
 class MealViews(viewsets.ViewSet):
 
@@ -70,3 +73,20 @@ class MealViews(viewsets.ViewSet):
         meal = get_object_or_404(Meal, id=meal_id)
         serializer = MealSerializer(meal, many=False)
         return Response(serializer.data)
+
+
+class MealFoodViews(viewsets.ViewSet):
+
+    def create(self, request, meal_id=None, food_id=None):
+        meal = get_object_or_404(Meal, id=meal_id)
+        food = get_object_or_404(Food, id=food_id)
+        meal.foods.add(food)
+        message = { 'message': f'Successfully added {food.name} to {meal.name}' }
+        return Response(message, status=status.HTTP_201_CREATED)
+
+    def destroy(self, request, meal_id=None, food_id=None):
+        meal = get_object_or_404(Meal, id=meal_id)
+        food = get_object_or_404(Food, id=food_id)
+        meal.foods.remove(food)
+        message = { 'message': f'Successfully removed {food.name} from {meal.name}' }
+        return Response(message, status=status.HTTP_202_ACCEPTED)
