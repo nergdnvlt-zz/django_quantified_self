@@ -85,4 +85,8 @@ class MealFoodViews(viewsets.ViewSet):
         return Response(message, status=status.HTTP_201_CREATED)
 
     def destroy(self, request, meal_id=None, food_id=None):
-        pass
+        meal = get_object_or_404(Meal, id=meal_id)
+        food = get_object_or_404(Food, id=food_id)
+        meal.foods.remove(food)
+        message = { 'message': f'Successfully removed {food.name} from {meal.name}' }
+        return Response(message, status=status.HTTP_204_NO_CONTENT)

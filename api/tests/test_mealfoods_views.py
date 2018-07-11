@@ -32,21 +32,20 @@ class MealFoodsEndpointTest(TestCase):
 
         self.assertEqual(response.status_code, 404)
 
+    def test_remove_food_from_meal(self):
+        self.breakfast.foods.add(self.apple)
+        response = self.client.delete(f'/api/v1/meals/{self.breakfast.id}/foods/{self.apple.id}')
 
+        self.assertEqual(response.data['message'], "Successfully removed apple from Breakfast")
 
-    # def test_gets_first_single_meal_endpoint(self):
-    #     meal_id = str(self.breakfast.id)
-    #     response = self.client.get(f'/api/v1/meals/{meal_id}/foods')
-    #
-    #     meal_response = response.json()
-    #
-    #     self.assertEqual(meal_response['name'], 'Breakfast')
-    #     self.assertEqual(meal_response['foods'][0]['name'], self.apple.name)
-    #     self.assertEqual(meal_response['foods'][0]['calories'], self.apple.calories)
-    #     self.assertEqual(meal_response['foods'][1]['name'], self.banana.name)
-    #     self.assertEqual(meal_response['foods'][1]['calories'], self.banana.calories)
-    #
-    #
-    # def test_sad_path_show_meal_endpoint(self):
-    #     response = self.client.get('/api/v1/meals/99/foods')
-    #     self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+    def test_remove_mealfood_sad_path_no_food(self):
+        self.breakfast.foods.add(self.apple)
+        response = self.client.delete(f'/api/v1/meals/1001/foods/{self.apple.id}')
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_remove_mealfood_sad_path_no_food(self):
+        self.breakfast.foods.add(self.apple)
+        response = self.client.delete(f'/api/v1/meals/{self.breakfast.id}/foods/1001')
+
+        self.assertEqual(response.status_code, 404)
