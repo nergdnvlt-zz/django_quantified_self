@@ -89,4 +89,4 @@ class MealFoodViews(viewsets.ViewSet):
         food = get_object_or_404(Food, id=food_id)
         meal.foods.remove(food)
         message = { 'message': f'Successfully removed {food.name} from {meal.name}' }
-        return Response(message, status=status.HTTP_204_NO_CONTENT)
+        return Response(message, status=status.HTTP_202_ACCEPTED)
