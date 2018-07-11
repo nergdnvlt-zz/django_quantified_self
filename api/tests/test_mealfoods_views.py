@@ -3,7 +3,6 @@ from rest_framework.test import APIClient
 from rest_framework import status
 from django.test import TestCase
 from api.models import Food, Meal
-from IPython import embed
 
 class MealFoodsEndpointTest(TestCase):
 
