@@ -22,6 +22,16 @@ class MealFoodsEndpointTest(TestCase):
 
         self.assertEqual(response.data['message'], "Successfully added apple to Breakfast")
 
+    def test_add_mealfood_sad_path_no_meal(self):
+        response = self.client.post(f'/api/v1/meals/101/foods/{self.apple.id}')
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_add_mealfood_sad_path_no_food(self):
+        response = self.client.post(f'/api/v1/meals/{self.breakfast.id}/foods/1001')
+
+        self.assertEqual(response.status_code, 404)
+
 
 
     # def test_gets_first_single_meal_endpoint(self):
