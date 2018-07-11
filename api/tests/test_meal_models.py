@@ -4,7 +4,7 @@ from api.models import Food, Meal
 
 # Create your tests here.
 class MealModelTestCase(TestCase):
-    
+
     def setUp(self):
         self.apple = Food.objects.create(name="apple", calories=88)
         self.banana = Food.objects.create(name="banan", calories=108)
