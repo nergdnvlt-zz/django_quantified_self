@@ -256,40 +256,8 @@ To Install and run this application please be aware of the following versions an
 - PG
 - Puma
 
-### Setup
----
-- First clone down this repository and change directory into the project directory:
-```
-git clone https://github.com/nergdnvlt/rails_quantified_self
-cd fiver
-```
-- Then in your command line run bundle to install the gem dependencies:
-```
-bundle
-```
-- Now setup your database and run the migrations to properly set up your database tables:
-```
-rake db:create
-rake db:migrate
-```
-- It's now time to seed the database with the required data:
-```
-rake db:seed
-```
-- At this point the project is set up. Explore at will.
-
-<br>
-
 ### The Test Suite
 ---
-
-#### Test Information
-
-##### Test Suite Components:
-- DatabaseCleaner
-- FactoryBot
-- Rspec
-- ShouldaMatchers
 
 #### Test Documentation and Tweaks
 
