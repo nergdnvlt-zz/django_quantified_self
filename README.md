@@ -1,6 +1,6 @@
 ### README
 
-# EXPRESS - QUANTIFIED SELF
+# Django - QUANTIFIED SELF
 
 ### See The Active Site:
 Front End Production Site:<br>
@@ -20,10 +20,8 @@ This project is an introduction to true Gateway API Architecture. I am utilizing
 ### Table Of Contents
 - [Database and Schema](#database-and-schema)
 - [API End Points](#api-end-points)
-- [Versions/Prerequisites](#versions-prerequisites)
-- [Setup](#setup)
+- [Basic Repo Info](#basic-repo-info)
 - [The Test Suite](#the-test-suite)
-- [Spinning Up A Server](#spinning-up-a-server)
 - [Authors](#authors)
 
 ### Database and Schema
@@ -240,90 +238,25 @@ It will return a JSON response of:
 }
 ```
 
-
-## For Downloading and Running Yourself:
+## Basic Repo Info:
 
 ### Versions/Prerequisites
 ---
 ##### Main:
 To Install and run this application please be aware of the following versions and requirements:
 - PostgreSQL 10+
-- Rails 5.2.0
-- Ruby 2.4.4
+- Python 3.7
+- Django 2.0
 
-###### Secondary:
-- ActiveRecord
-- PG
-- Puma
-
-### Setup
----
-- First clone down this repository and change directory into the project directory:
-```
-git clone https://github.com/nergdnvlt/rails_quantified_self
-cd fiver
-```
-- Then in your command line run bundle to install the gem dependencies:
-```
-bundle
-```
-- Now setup your database and run the migrations to properly set up your database tables:
-```
-rake db:create
-rake db:migrate
-```
-- It's now time to seed the database with the required data:
-```
-rake db:seed
-```
-- At this point the project is set up. Explore at will.
-
-<br>
 
 ### The Test Suite
 ---
-
-#### Test Information
-
-##### Test Suite Components:
-- DatabaseCleaner
-- FactoryBot
-- Rspec
-- ShouldaMatchers
-
-#### Test Documentation and Tweaks
-
-- For additional documentation and the individual tests as the suite runs:
-```
---format=documentation
-```
 
 ##### About The Tests:
  The test suite includes test for the following:
 - Model Level Testing
 - API Request Testing<br>
-These tests can be found in the following folder:
-```
-spec/models/
-spec/requests/api/v1/foods
-spec/requests/api/v1/meals
-```
 
-##### Running The Suite:
-- In order to run the test suite, from the root project folder simply run:
-```
-rspec
-```
-
-<br>
-
-### Spinning Up a Server
-___
-
-- Next spin up your server:
-```
-rails s
-```
 <br>
 
 
