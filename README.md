@@ -13,7 +13,7 @@ Pitch:
 This app is a basic food/meal/calorie tracking application.
 
 Tech Pitch:
-This project is an introduction to true Gateway API Architecture. I am utilizing a front-end built in JavaScript which makes fetch calls to the Rails API endpoints.
+This project is an introduction to true Gateway API Architecture. I am utilizing a front-end built in JavaScript which makes fetch calls to the Django API endpoints.
 
 ![screenshot](screenshot.png)
 
@@ -21,6 +21,7 @@ This project is an introduction to true Gateway API Architecture. I am utilizing
 - [Database and Schema](#database-and-schema)
 - [API End Points](#api-end-points)
 - [Basic Repo Info](#basic-repo-info)
+- [Setup](#setup)
 - [The Test Suite](#the-test-suite)
 - [Authors](#authors)
 
@@ -247,6 +248,65 @@ To Install and run this application please be aware of the following versions an
 - PostgreSQL 10+
 - Python 3.7
 - Django 2.0
+
+## Setup
+
+## Initial Setup
+
+#### Clone this repository:
+
+  ```
+  git clone git@github.com:nergdnvlt/django_quantified_self.git
+  ```
+  ```
+  cd django_quantified_self
+  ```
+
+#### Create a virtualenv
+
+  ```
+  virtualenv -p python3 .env
+  source .env/bin/activate
+  ```
+
+#### Updgrade pip and install dependencies
+
+  ```shell
+  pip3 install --upgrade pip
+  pip3 install -r requirements/local.txt
+  ```
+
+#### Set up databases using PostgreSQL
+
+  ```shell
+  createdb django_quantified_self;
+  createdb django_quantified_self_test;
+  ```
+
+#### Migrate and Seed
+
+  ```shell
+  python3 manage.py makemigrations
+  python3 manage.py migrate
+  ```
+
+#### Run test suite
+
+  ```shell
+    python3 manage.py test
+  ```
+
+## Run the Server
+
+To see your code in action locally, you need to fire up a development server. Use the command:
+
+```shell
+python3 manage.py runserver
+```
+
+Once the server is running, visit API endpoints in your browser:
+
+* `http://localhost:8000/` to run your application.
 
 
 ### The Test Suite
